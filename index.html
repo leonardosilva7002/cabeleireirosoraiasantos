@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soraia Santos — Cabeleireiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #FAFAF8;
+      --off-white: #F2F0EB;
+      --light-grey: #E5E3DC;
+      --mid-grey: #B8B5AC;
+      --dark-grey: #4A4845;
+      --charcoal: #2A2826;
+      --black: #1A1816;
+      --green-dark: #2C3B2D;
+      --green-mid: #4A6349;
+      --green-accent: #6B8C6A;
+      --gold: #C8A96E;
+    }
+
+    /* ── DARK MODE ── */
+    body.dark {
+      --white: #141412;
+      --off-white: #1C1B19;
+      --light-grey: #2A2826;
+      --mid-grey: #6A6760;
+      --dark-grey: #A8A5A0;
+      --charcoal: #E8E5DF;
+      --black: #0A0908;
+      --green-dark: #1A2B1B;
+      --green-mid: #5A7A59;
+      --green-accent: #7A9E79;
+    }
+
+    body.dark nav {
+      background: rgba(20,20,18,0.92);
+      border-bottom-color: var(--light-grey);
+    }
+
+    body.dark .about { background: var(--off-white); }
+    body.dark .contact { background: var(--off-white); }
+    body.dark .hero-badge { background: rgba(20,20,18,0.95); }
+    body.dark .tab-btn.active { background: var(--charcoal); color: var(--black); }
+    body.dark .review-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
+    body.dark footer { background: #080806; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-grey);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    body.dark .nav-logo { color: var(--charcoal); }
+
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    body.dark .nav-links a { color: var(--mid-grey); }
+
+    .nav-links a:hover { color: var(--green-mid); }
+    body.dark .nav-links a:hover { color: var(--green-accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--green-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5rem 6rem 6rem;
+      position: relative;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 0; right: -60px; bottom: 0;
+      width: 120px;
+      background: var(--green-dark);
+      clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%);
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 0.8rem;
+      line-height: 1.9;
+      color: var(--mid-grey);
+      max-width: 340px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.9rem 2.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+      width: fit-content;
+    }
+
+    .hero-cta:hover {
+      background: var(--gold);
+      color: var(--green-dark);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: brightness(0.95) contrast(1.02);
+    }
+
+    .hero-right-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(44,59,45,0.15) 0%, transparent 40%);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 3rem; left: 3rem;
+      background: rgba(250,250,248,0.95);
+      backdrop-filter: blur(8px);
+      padding: 1.2rem 1.6rem;
+      border-left: 3px solid var(--gold);
+    }
+
+    .hero-badge-stars {
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-badge p {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+    }
+
+    .hero-badge strong {
+      font-size: 1.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--charcoal);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 7rem 6rem; }
+
+    .section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--green-mid); }
+
+    .divider {
+      width: 50px; height: 1px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--off-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image-wrap img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .about-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: -20px; left: -20px;
+      right: 20px; bottom: 20px;
+      border: 1px solid var(--green-accent);
+      z-index: 0;
+    }
+
+    .about-image-wrap img { position: relative; z-index: 1; }
+
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--green-mid);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      line-height: 1.6;
+    }
+
+    .about-text {
+      font-size: 0.82rem;
+      line-height: 2;
+      color: var(--dark-grey);
+    }
+
+    /* ── PORTFOLIO ── */
+    .portfolio { background: var(--white); }
+
+    .portfolio-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+    }
+
+    .tab-btns {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--light-grey);
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--mid-grey);
+      transition: all 0.2s;
+      border-right: 1px solid var(--light-grey);
+    }
+
+    .tab-btn:last-child { border-right: none; }
+
+    .tab-btn.active {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+
+    .gallery {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .gallery.active { display: grid; }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gallery-item:nth-child(2) { margin-top: 2rem; }
+    .gallery-item:nth-child(5) { margin-top: -2rem; }
+
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gallery-item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,24,22,0.6) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+    .gallery-item-overlay span {
+      color: var(--white);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews {
+      background: var(--green-dark);
+      color: var(--white);
+    }
+
+    .reviews .section-label { color: #7A9E79; }
+    .reviews .section-title { color: #FAFAF8; }
+    .reviews .divider { background: var(--gold); }
+    .reviews-score .score-info p { color: #B8B5AC; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem;
+      transition: background 0.3s;
+    }
+
+    .review-card:hover { background: rgba(255,255,255,0.09); }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: #E5E3DC;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-author {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #7A9E79;
+    }
+
+    .reviews-score {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .score-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .score-info p {
+      font-size: 0.7rem;
+      color: var(--mid-grey);
+      letter-spacing: 0.1em;
+    }
+
+    .score-stars { font-size: 1.2rem; color: var(--gold); }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--off-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .contact-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--green-accent);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green-mid);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-value {
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+    }
+
+    .contact-map {
+      width: 100%;
+      height: 380px;
+      border: none;
+      filter: grayscale(30%);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: var(--mid-grey);
+      text-align: center;
+      padding: 3rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--mid-grey);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .footer-social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .footer-social-link svg {
+      width: 16px; height: 16px;
+      fill: currentColor;
+    }
+
+    footer .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--white);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem; right: 2.5rem;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--light-grey);
+      color: var(--dark-grey);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { border-color: var(--green-accent); color: var(--green-mid); }
+
+    /* ── APPOINTMENT BANNER ── */
+    .appt-banner {
+      background: var(--green-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 1.1rem 2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .appt-banner span { color: var(--mid-grey); }
+    .appt-btn {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.55rem 1.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      display: inline-block;
+    }
+    .appt-btn:hover { opacity: 0.85; }
+
+    /* ── APPOINTMENT MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white);
+      padding: 3rem;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      border-top: 3px solid var(--gold);
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      background: none; border: none;
+      font-size: 1.4rem; cursor: pointer; color: var(--mid-grey);
+    }
+    .modal h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 300;
+      color: var(--charcoal); margin-bottom: 0.4rem;
+    }
+    .modal p.modal-sub {
+      font-size: 0.72rem; color: var(--mid-grey);
+      letter-spacing: 0.08em; margin-bottom: 2rem;
+    }
+    .modal-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    .modal-option {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.1rem 1.4rem;
+      border: 1px solid var(--light-grey);
+      text-decoration: none; color: var(--charcoal);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .modal-option:hover { border-color: var(--gold); background: var(--off-white); }
+    .modal-option-icon { font-size: 1.3rem; }
+    .modal-option-label {
+      font-size: 0.62rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--mid-grey);
+      display: block; margin-bottom: 0.2rem;
+    }
+    .modal-option-value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+    .modal-note { font-size: 0.65rem; color: var(--mid-grey); text-align: center; letter-spacing: 0.08em; }
+
+    /* ── MOBILE MENU ── */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: 1px solid var(--light-grey);
+      color: var(--charcoal);
+      width: 36px; height: 36px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    body.dark .nav-hamburger { color: var(--charcoal); }
+    .nav-hamburger:hover { border-color: var(--green-accent); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(250,250,248,0.97);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid var(--light-grey);
+        padding: 1rem 0;
+      }
+      body.dark .nav-links {
+        background: rgba(20,20,18,0.97);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.72rem;
+        border-bottom: 1px solid var(--light-grey);
+      }
+      .nav-links li:last-child a { border-bottom: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 2rem 4rem; }
+      .hero-left::after { display: none; }
+      .hero-right { height: 55vw; }
+      section { padding: 5rem 1.5rem; }
+      .about, .contact { grid-template-columns: 1fr; gap: 3rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(2), .gallery-item:nth-child(5) { margin-top: 0; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .portfolio-header { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Soraia Santos</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#sobre" onclick="closeNav()">Sobre</a></li>
+    <li><a href="#portfolio" onclick="closeNav()">Portfólio</a></li>
+    <li><a href="#avaliacoes" onclick="closeNav()">Avaliações</a></li>
+    <li><a href="#contacto" onclick="closeNav()">Contacto</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.6rem;">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Mudar tema" id="theme-btn">🌙</button>
+    <button class="nav-hamburger" id="hamburger-btn" onclick="toggleNav()" title="Menu" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- APPOINTMENT BANNER -->
+<div class="appt-banner" style="margin-top:72px;">
+  <span>✂ Atendimento exclusivamente por marcação &nbsp;·&nbsp; Ter–Sex: 9h–19h &nbsp;·&nbsp; Sáb: 9h–17h</span>
+  <button class="appt-btn" onclick="openModal()">Marcar Agora</button>
+</div>
+
+<!-- APPOINTMENT MODAL -->
+<div class="modal-overlay" id="appt-modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('appt-modal').classList.remove('open')">×</button>
+    <h3>Fazer Marcação</h3>
+    <p class="modal-sub">Escolha como prefere contactar</p>
+    <div class="modal-options">
+      <a href="tel:913869754" class="modal-option">
+        <span class="modal-option-icon">📞</span>
+        <div>
+          <span class="modal-option-label">Telefonar</span>
+          <span class="modal-option-value">913 869 754</span>
+        </div>
+      </a>
+      <a href="https://wa.me/351913869754?text=Olá%20Soraia%2C%20gostaria%20de%20fazer%20uma%20marcação." target="_blank" class="modal-option">
+        <span class="modal-option-icon">💬</span>
+        <div>
+          <span class="modal-option-label">WhatsApp</span>
+          <span class="modal-option-value">Enviar mensagem</span>
+        </div>
+      </a>
+    </div>
+    <p class="modal-note">⏰ Ter – Sex: 9h–19h &nbsp;·&nbsp; Sáb: 9h–17h</p>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Cabeleireiro · Braga</p>
+    <h1 class="hero-title">Arte em<br>cada <em>fio</em><br>de cabelo</h1>
+    <p class="hero-desc">
+      Um espaço pensado para si, onde cada detalhe é tratado com dedicação, técnica e paixão pelo que fazemos.
+    </p>
+    <a href="#portfolio" class="hero-cta">Ver Portfólio →</a>
+  </div>
+  <div class="hero-right">
+    <img src="images/Casamento3.png" alt="Penteado de noiva" />
+    <div class="hero-right-overlay"></div>
+    <div class="hero-badge">
+      <strong>4,6</strong>
+      <div class="hero-badge-stars">★★★★½</div>
+      <p>31 avaliações Google</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="about fade-up" id="sobre">
+  <div class="about-image-wrap">
+    <img src="images/Soraia.png" alt="Soraia Santos" />
+  </div>
+  <div class="about-content">
+    <p class="section-label">Sobre a Cabeleireira</p>
+    <h2 class="section-title">Olá, sou a <em>Soraia Santos</em></h2>
+    <div class="divider"></div>
+    <blockquote class="about-quote">
+      "Cada cliente merece sentir-se especial — não apenas no dia, mas sempre que sai daqui."
+    </blockquote>
+    <p class="about-text">
+      Com anos de experiência no mundo da beleza e um olhar apurado para as tendências, a Soraia Santos é mais do que cabeleireira — é uma artista que transforma o cabelo numa extensão da personalidade de cada pessoa.<br><br>
+      Especializada em colorações, penteados de cerimónia e tratamentos de reconstrução, o seu trabalho distingue-se pelo cuidado com os detalhes, pela qualidade dos produtos utilizados e pela relação de confiança que cria com cada cliente.<br><br>
+      No seu salão em Ferreiros, Braga, encontrará um ambiente acolhedor e profissional, onde o tempo passado na cadeira é uma experiência de bem-estar genuíno.
+    </p>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio fade-up" id="portfolio">
+  <div class="portfolio-header">
+    <div>
+      <p class="section-label">Trabalhos</p>
+      <h2 class="section-title">O nosso <em>portfólio</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="tab-btns">
+      <button class="tab-btn active" onclick="switchTab('cabelo')">Penteados</button>
+      <button class="tab-btn" onclick="switchTab('casamento')">Casamentos</button>
+    </div>
+  </div>
+
+  <div class="gallery active" id="tab-cabelo">
+    <div class="gallery-item" onclick="openLightbox('images/cabelo1.png')">
+      <img src="images/cabelo1.png" alt="Penteado 1" />
+      <div class="gallery-item-overlay"><span>Coloração &amp; Ondas</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/Cabelo2.png')">
+      <img src="images/Cabelo2.png" alt="Penteado 2" />
+      <div class="gallery-item-overlay"><span>Rabo de Cavalo</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/Cabelo3.png')">
+      <img src="images/Cabelo3.png" alt="Penteado 3" />
+      <div class="gallery-item-overlay"><span>Coloração Mechas</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/Cabelo4.png')">
+      <img src="images/Cabelo4.png" alt="Penteado 4" />
+      <div class="gallery-item-overlay"><span>Liso &amp; Brilho</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/Cabelo5.png')">
+      <img src="images/Cabelo5.png" alt="Penteado 5" />
+      <div class="gallery-item-overlay"><span>Ondas Naturais</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/Cabelo6.png')">
+      <img src="images/Cabelo6.png" alt="Penteado 6" />
+      <div class="gallery-item-overlay"><span>Liso Sedoso</span></div>
+    </div>
+  </div>
+
+  <div class="gallery" id="tab-casamento">
+    <div class="gallery-item" onclick="openLightbox('images/Casamento1.png')">
+      <img src="images/Casamento1.png" alt="Casamento 1" />
+      <div class="gallery-item-overlay"><span>Penteado de Noiva</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/Casamento2.png')">
+      <img src="images/Casamento2.png" alt="Casamento 2" />
+      <div class="gallery-item-overlay"><span>Noiva Natural</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/Casamento3.png')">
+      <img src="images/Casamento3.png" alt="Casamento 3" />
+      <div class="gallery-item-overlay"><span>Coque Romântico</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section class="reviews fade-up" id="avaliacoes">
+  <p class="section-label">Google Reviews</p>
+  <h2 class="section-title">O que dizem as <em>clientes</em></h2>
+  <div class="divider"></div>
+
+  <div class="reviews-score">
+    <div class="score-num">4,6</div>
+    <div class="score-info">
+      <div class="score-stars">★★★★½</div>
+      <p>31 avaliações verificadas</p>
+    </div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Um estabelecimento profissional e acessível. Sinto-me sempre bem recebida e o resultado fala por si."</p>
+      <p class="review-author">Cliente Google</p>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Atendimento 5 estrelas, tudo que se precisa tem lá. Recomendo de olhos fechados!"</p>
+      <p class="review-author">Cliente Google</p>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Recomendo pelo profissionalismo, perfeição e simpatia. A Soraia tem um talento incrível."</p>
+      <p class="review-author">Cliente Google</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact fade-up" id="contacto">
+  <div>
+    <p class="section-label">Localização</p>
+    <h2 class="section-title">Venha <em>visitar-nos</em></h2>
+    <div class="divider"></div>
+
+    <div class="contact-info-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <p class="contact-label">Morada</p>
+        <p class="contact-value">R. do Cruzeiro 130<br>Ferreiros, 4700-134 Braga</p>
+      </div>
+    </div>
+
+    <div class="contact-info-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <p class="contact-label">Telefone</p>
+        <p class="contact-value"><a href="tel:913869754" style="color:inherit;text-decoration:none;">913 869 754</a></p>
+      </div>
+    </div>
+
+    <div class="contact-info-item">
+      <div class="contact-icon">🕐</div>
+      <div>
+        <p class="contact-label">Horário</p>
+        <p class="contact-value">Ter – Sex: 9h – 19h<br>Sábado: 9h – 17h</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <iframe
+      class="contact-map"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3030.0!2d-8.447!3d41.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sR.+do+Cruzeiro+130%2C+Ferreiros%2C+4700-134+Braga!5e0!3m2!1spt!2spt!4v1"
+      allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Soraia Santos</span>
+  <div class="footer-socials">
+    <a href="https://www.instagram.com/cabeleireirosoraiasantos/" target="_blank" rel="noopener" class="footer-social-link" title="Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/cabeleireirosoraiasantos/?locale=pt_PT" target="_blank" rel="noopener" class="footer-social-link" title="Facebook">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+  </div>
+  <p>© 2025 Soraia Santos Cabeleireiro · Ferreiros, Braga</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt="Imagem ampliada" />
+</div>
+
+<script>
+  // Nav hamburger
+  function toggleNav() {
+    const links = document.getElementById('nav-links');
+    const btn = document.getElementById('hamburger-btn');
+    const isOpen = links.classList.toggle('open');
+    btn.textContent = isOpen ? '✕' : '☰';
+  }
+  function closeNav() {
+    document.getElementById('nav-links').classList.remove('open');
+    document.getElementById('hamburger-btn').textContent = '☰';
+  }
+
+  // Theme toggle
+  function toggleTheme() {
+    const isDark = document.body.classList.toggle('dark');
+    document.getElementById('theme-btn').textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+  // Restore saved theme
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.getElementById('theme-btn').textContent = '☀️';
+  }
+
+  // Appointment modal
+  function openModal() {
+    document.getElementById('appt-modal').classList.add('open');
+  }
+  function closeModal(e) {
+    if (e.target === document.getElementById('appt-modal')) {
+      document.getElementById('appt-modal').classList.remove('open');
+    }
+  }
+
+  // Tabs
+  function switchTab(tab) {
+    document.querySelectorAll('.gallery').forEach(g => g.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
